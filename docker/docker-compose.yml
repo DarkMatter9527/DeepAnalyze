@@ -1,0 +1,82 @@
+# Docker Compose for DeepAnalyze
+# Two services: inference (vLLM + data science) and sft-rl (training)
+#
+# Usage:
+#   docker compose up -d inference   # Start inference service
+#   docker compose up -d sft-rl      # Start SFT/RL training service
+#   docker compose up -d             # Start both
+
+services:
+  # ── Inference & Data Science ──────────────────────────────────
+  inference:
+    image: deepanalyze-env:latest
+    # Or build locally:
+    # build:
+    #   context: ..
+    #   dockerfile: docker/inference/Dockerfile
+
+    container_name: deepanalyze-inference
+
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+
+    ports:
+      - "8000:8000"
+
+    volumes:
+      - ../workspace:/workspace
+      - ../models:/models
+
+    environment:
+      - CUDA_VISIBLE_DEVICES=0
+
+    # Uncomment to auto-start vLLM server:
+    # command: >
+    #   python3 -m vllm.entrypoints.openai.api_server
+    #     --model /models/your-model-name
+    #     --host 0.0.0.0 --port 8000
+
+    command: /bin/bash
+    stdin_open: true
+    tty: true
+    restart: unless-stopped
+
+  # ── SFT / RL Training ────────────────────────────────────────
+  sft-rl:
+    image: deepanalyze-sft-rl:latest
+    # Or build locally:
+    # build:
+    #   context: ..
+    #   dockerfile: docker/sft-rl/Dockerfile
+
+    container_name: deepanalyze-sft-rl
+
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+
+    ports:
+      - "8001:8000"
+
+    volumes:
+      - ../workspace:/workspace
+
+    environment:
+      - CUDA_VISIBLE_DEVICES=0
+      - HF_ENDPOINT=https://hf-mirror.com
+
+    shm_size: "16g"
+
+    command: /bin/bash
+    stdin_open: true
+    tty: true
+    restart: unless-stopped

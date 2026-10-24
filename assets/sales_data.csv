@@ -1,0 +1,21 @@
+OrderID,Date,Region,Product,Channel,SalesRep,Quantity,UnitPrice,TotalSales
+S001,2026-02-01,East,Laptop Stand,Online,Alice,12,25.5,306.0
+S002,2026-02-02,South,Wireless Mouse,Retail,Bob,18,15.0,270.0
+S003,2026-02-03,North,Keyboard,Online,Cathy,10,32.0,320.0
+S004,2026-02-04,West,Monitor,Distributor,David,5,180.0,900.0
+S005,2026-02-05,East,USB-C Hub,Online,Eva,14,28.0,392.0
+S006,2026-02-06,South,Webcam,Retail,Frank,9,65.0,585.0
+S007,2026-02-07,North,Desk Lamp,Online,Grace,16,22.5,360.0
+S008,2026-02-08,West,Office Chair,Distributor,Henry,4,240.0,960.0
+S009,2026-02-09,East,Notebook,Retail,Ivy,30,6.5,195.0
+S010,2026-02-10,South,Bluetooth Speaker,Online,Jack,7,88.0,616.0
+S011,2026-02-11,North,Tablet,Retail,Alice,6,220.0,1320.0
+S012,2026-02-12,West,Printer,Distributor,Bob,3,260.0,780.0
+S013,2026-02-13,East,Headset,Online,Cathy,11,48.0,528.0
+S014,2026-02-14,South,External SSD,Retail,David,8,110.0,880.0
+S015,2026-02-15,North,Microphone,Online,Eva,13,54.0,702.0
+S016,2026-02-16,West,Projector,Distributor,Frank,2,520.0,1040.0
+S017,2026-02-17,East,Smartphone Stand,Retail,Grace,20,12.0,240.0
+S018,2026-02-18,South,Router,Online,Henry,6,95.0,570.0
+S019,2026-02-19,North,Power Bank,Retail,Ivy,15,35.0,525.0
+S020,2026-02-20,West,Mini PC,Distributor,Jack,3,430.0,1290.0
